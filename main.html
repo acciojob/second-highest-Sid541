@@ -9,8 +9,33 @@
 <body>	
 	<script>
 		function secondHighest(arr) {
+			let n=arr.length;
+			if(n===0 || n===1){
+			  return "-Infinity";
+			}
+			let flag=1;
+			for(let i=0;i<n;i++){
+				if(arr[i]!=1){
+					flag=0;
+					break;
+				}
+			}
+			if(flag===1){
+				return "-Infinity";
+			}
 			//Write your code here
-			
+			let max=Number.MIN_VALUE;
+			let max2=Number.MIN_VALUE;
+			for(let i=0;i<n;i++){
+				if(arr[i]>max){
+					max2=max;
+					max=arr[i];
+				}
+				else if(arr[i]<max && arr[i]>max2){
+					max2=arr[i];
+				}
+			}
+			return max2;
 		}
 
 		function Main() {
