@@ -1,57 +1,47 @@
-<!DOCTYPE html>
+<script>
+	function secondHighest(arr) {
+		let n = arr.length;
 
-<html>
+		// Convert array elements to numbers
+		arr = arr.map(Number);
 
-<head>
-	<link rel="stylesheet" href="styles.css">
-</head>
-
-<body>	
-	<script>
-		function secondHighest(arr) {
-			let n=arr.length;
-			if(n===0 || n===1){
-			  return "-Infinity";
-			}
-			let flag=1;
-			for(let i=0;i<n;i++){
-				if(arr[i]!=1){
-					flag=0;
-					break;
-				}
-			}
-			if(flag===1){
-				return "-Infinity";
-			}
-			//Write your code here
-			let max=Number.MIN_VALUE;
-			let max2=Number.MIN_VALUE;
-			for(let i=0;i<n;i++){
-				if(arr[i]>max){
-					max2=max;
-					max=arr[i];
-				}
-				else if(arr[i]<max && arr[i]>max2){
-					max2=arr[i];
-				}
-			}
-			return max2;
+		if (n < 2) {
+			return "-Infinity";
 		}
 
-		function Main() {
-			var n = prompt("Enter the number of elements");
-			var arr = [];
-			for (var i = 0; i < n; i++) {
-				arr[i] = prompt("Enter element " + (i+1));
-			}
-			alert(secondHighest(arr));
+		// Check if all elements are same
+		let allSame = arr.every(val => val === arr[0]);
+		if (allSame) {
+			return "-Infinity";
 		}
-		Main();
-	</script>
 
-    <script type="text/javascript" src="./script.js">
+		// Proper initialization for negative numbers
+		let max = -Infinity;
+		let max2 = -Infinity;
+
+		for (let i = 0; i < n; i++) {
+			if (arr[i] > max) {
+			
+				max2 = max;
+				max = arr[i];
+			} else if (arr[i] < max && arr[i] > max2) {
+				max2 = arr[i];
+			}
+		}
+
+		return max2;
+	}
+
+	function Main() {
+		var n = Number(prompt("Enter the number of elements"));
+		var arr = [];
+
+		for (var i = 0; i < n; i++) {
+			arr[i] = Number(prompt("Enter element " + (i + 1)));
+		}
+
+		alert(secondHighest(arr));
+	}
+
+	Main();
 </script>
-
-</body>
-
-</html>
